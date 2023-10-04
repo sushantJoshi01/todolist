@@ -1,0 +1,56 @@
+from tkinter import*
+from tkinter import messagebox as mb
+#import win32com.client as wincl
+from tkinter import simpledialog
+r=Tk()
+def add():
+    if e1.get() == "":
+        mb.showerror('Error', 'Fill in the input field')
+    else:
+        n = e1.get()
+        list.insert(END, f"✓{n}")
+        name.set("")
+
+def delete():
+	list.delete(ANCHOR)
+def call():
+	res = mb.askquestion('Exit Application','Do you really want to exit?')
+	if res == 'yes':
+		r.destroy()
+	else:
+		mb.showinfo('Return','Back to the main application')
+#def thank():
+#    speak = wincl.Dispatch("SAPI.SpVoice")
+#    speak.Speak("first task was added add another task")
+#    r.destroy()
+def update():
+    selected = list.curselection()
+    updated_name = simpledialog.askstring("Update Element", "Enter updated name:")
+    list.delete(0,END)
+    list.insert(0,updated_name)
+r.config(bg='orange')
+f=Frame(highlightbackground='red',highlightthickness=50)
+f.pack(pady=50)
+lb1=Label(f,text='Make a To-Do-List',bg='white',font='Munich 15 bold',bd=10,relief=RAISED)
+lb1.pack()
+lb=Label(f,text='Enter a task',font='Aquire 25 bold',bg='orange',bd=10,relief=RIDGE)
+lb.pack(pady=10)
+name=StringVar()
+e1=Entry(f,font='bold 16',textvariable=name,bg='light blue',bd=8,relief=RAISED,highlightcolor='red',highlightthickness=10)
+e1.pack(pady=20)
+list=Listbox(f,width=50,height=10,bg='yellow',bd=20,relief=RIDGE)
+list.pack()
+btn1=Button(f,text='Delete',font='bold 10',command=delete,activebackground='grey',relief=SUNKEN,bd=10)
+btn1.pack(pady=10,side='left',padx=10)
+btn2=Button(f,text='Add',font='bold 10',command=add,activebackground='grey',relief=SUNKEN,bd=10)
+btn2.pack(pady=10,side='left',padx=10)
+btn2=Button(f,text='Exit',font='bold 10',command=call,activebackground='grey',relief=SUNKEN,bd=10)
+btn2.pack(pady=10,side='left',padx=10)
+scroll=Scrollbar(r,orient='vertical',command=list.yview)
+list['yscrollcommand']=scroll.set
+scroll.place(x=1000,y=690)
+btn3=Button(f,text='update',font='bold 10',command=update,activebackground='grey',relief=SUNKEN,bd=10)
+btn3.pack(pady=10,side='left',padx=10)
+r.mainloop()relief=SUNKEN,bd=10)
+btn2.pack(pady=10,side='left',padx=10)
+r.mainloop()
